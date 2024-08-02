@@ -1,0 +1,398 @@
+r<div>
+  <div class=" header bg-danger pb-6">
+    <div class=" container-fluid">
+      <div class=" header-body">
+        <div class=" row align-items-center py-4">
+          <div class=" col-lg-6 col-7">
+            <h6 class=" h2 text-white d-inline-block mb-0">File Inward</h6>
+            <nav aria-label="breadcrumb" class=" d-none d-md-inline-block ml-md-4">
+              <ol class=" breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class=" breadcrumb-item">
+                  <a href="javascript:void(0)"> <i class=" fas fa-home" routerLink=""> </i> </a>
+                </li>
+
+              </ol>
+            </nav>
+          </div>
+
+          <!-- <div class=" col-lg-6 col-5 text-right">
+            <a class=" btn btn-sm btn-neutral" (click)="addUser(userFormPopup)"> Create New User</a>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class=" container-fluid mt--6">
+    <div class=" row">
+      <div class=" col">
+        <div class=" card">
+          <div class="retrieval_add_form">
+
+            <form class="needs-validation p-4" [formGroup]="AddFileInwardForm">
+              <div class="row">
+                <div class="row">
+                  <div class="col-md-3 mb-3">
+                    <label class="form-control-label" for="BatchID">Batch ID</label>
+                    <input type="text" readonly class="form-control" name="BatchID"
+                      formControlName="BatchID" (change)="GetBatchDetails()" />
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <label class=" form-control-label" for="File_Barcode">Product Name </label>
+
+                    <select name="ProductName" class="form-select form-control" formControlName="ProductName"
+                      (change)="getProductDetails($event)">
+                      <option value="">select</option>
+                      <option value="Finplex">Finplex</option>
+                      <option value="Sonata">Sonata</option>
+                      <option value="NOCPL">NOCPL</option>
+                    </select>
+                  </div>
+
+                  <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise">
+                    <label *ngIf="enableFieldsProductWise==='NOCPL'" class=" form-control-label" for="Loan_Id">App
+                      ID</label>
+                    <label *ngIf="enableFieldsProductWise !=='NOCPL'" class=" form-control-label"
+                      for="Loan_Id">LAN</label>
+                    <input name="Loan_Id" id="Loan_Id" style="border-color: green;"
+                      formControlName="Loan_Id" type="text" (change)="GetLanDetails()" class="form-control" />
+                    </div>
+                </div>
+                <div class="row">
+
+                  <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise">
+                    <label class=" form-control-label" for="FIleBarcode">File Barcode </label>
+
+                    <input name="FIleBarcode" style="border-color: green;" formControlName="FIleBarcode" type="text"
+                      class="form-control" (keydown.enter)="onEnterKeyPrevent($event)" />
+                  </div>
+
+                  <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise">
+                    <label class=" form-control-label" for="CartonBarCode">Carton No</label>
+                    <input name="CartonBarCode" style="border-color: green;" formControlName="CartonBarCode" type="text"
+                      class="form-control" (keydown.enter)="onEnterKeyPrevent($event)" />
+
+                  </div>
+
+
+                  <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise">
+                    <label class=" form-control-label" for="document_type">Document Type</label>
+                    <input readonly name="DocumentType" formControlName="DocumentType" type="text"
+                      class="form-control" />
+                  </div>
+
+                  <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise==='NOCPL' || enableFieldsProductWise==='Finplex'">
+                    <label class=" form-control-label" for="product">Branch Name</label>
+                    <input readonly name="branchName" formControlName="branchName" type="text" class="form-control" />
+
+                  </div>
+
+                  <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise">
+                    <label class=" form-control-label" for="sub_lcoation">Disbursed Date</label>
+                    <input readonly name="disbursed_date" formControlName="disbursed_date" type="text"
+                      class="form-control" />
+                  </div>
+
+                  <!-- <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise">
+                    <label class=" form-control-label" for="sub_lcoation">Entity Name</label>
+                    <input readonly name="entityName" formControlName="entityName" type="text" class="form-control" />
+                  </div> -->
+
+
+                  <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise=== 'Sonata'">
+                    <label class=" form-control-label" for="">Date Of Birth</label>
+                    <input readonly name="dateOfBirth" formControlName="dateOfBirth" type="text" class="form-control" />
+                  </div>
+
+                  <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise=== 'Sonata'">
+                    <label class=" form-control-label" for="Enterprise Name">Enterprise Name</label>
+                    <input readonly name="enterpriseName" formControlName="enterpriseName" type="text"
+                      class="form-control" />
+                  </div>
+
+
+                  <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise=== 'Sonata'">
+                    <label class=" form-control-label" for="PropertyDoc">Identity Proof Number</label>
+                    <input readonly name="identityProofNo" formControlName="identityProofNo" type="text"
+                      class="form-control" />
+                  </div>
+
+                  <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise=== 'Sonata'">
+                    <label class=" form-control-label" for="PropertyDoc">Identity Proof Name</label>
+                    <input readonly name="identityProofName" formControlName="identityProofName" type="text"
+                      class="form-control" />
+                  </div>
+                  <div class=" col-md-3 mb-3"
+                    *ngIf="enableFieldsProductWise==='NOCPL' || enableFieldsProductWise==='Sonata'"> <!-- NOCPL -->
+                    <label class=" form-control-label">Group ID</label>
+                    <input readonly name="Group_id"  formControlName="Group_id" type="text"
+                      class="form-control" />
+                  </div>
+                  <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise==='NOCPL'"><!-- NOCPL -->
+                    <label class=" form-control-label">Center Name</label>
+                    <input readonly name="centerName" style="border-color: green;" formControlName="centerName"
+                      type="text" class="form-control" />
+                  </div>
+
+                  <div class="row">
+
+                    <div class=" col-md-3 mb-3"
+                      *ngIf="enableFieldsProductWise==='Finplex' || enableFieldsProductWise==='Sonata'">
+                      <label class=" form-control-label" for="Loan_App_Form_Argmnt">Loan App Form/Agreement</label>
+                      <select name="CreditFile" class="form-select form-control" formControlName="Loan_App_Form_Argmnt">
+                        <option selected value="">select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+
+                      </select>
+                    </div>
+
+                    <div class=" col-md-3 mb-3"
+                      *ngIf="enableFieldsProductWise==='Finplex' || enableFieldsProductWise==='Sonata'">
+                      <label class=" form-control-label" for="KYC_document">KYC Documents</label>
+                      <select name="KYC_document" class="form-select form-control" formControlName="KYC_document">
+                        <option selected value="">select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+
+                      </select>
+
+                    </div>
+
+
+                    <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise==='Finplex'">
+                      <label class=" form-control-label" for="Sanction_letter">Sanction Letter</label>
+                      <select name="Sanction_letter" class="form-select form-control" formControlName="Sanction_letter">
+                        <option selected value="">select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+
+                      </select>
+                    </div>
+
+                    <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise==='Finplex'">
+                      <label class=" form-control-label" for="DPN">DPN</label>
+                      <select name="DPN" class="form-select form-control" formControlName="DPN">
+                        <option selected value="">select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                      </select>
+                    </div>
+
+                    <!-- <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise==='Finplex'">
+                    <label class=" form-control-label" for="CheckList">Remark</label>
+                    <select name="CheckList" class="form-select form-control" formControlName="CheckList">
+                      <option selected value="">select</option>
+                      <option value="Yes"></option>
+                      <option value="No"></option>
+
+                    </select>
+                  </div> -->
+
+                    <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise=== 'Sonata'">
+                      <label class=" form-control-label" for="JLG_Availibility">JLG Availabity</label>
+                      <select name="JLG_Availibility" class="form-select form-control"
+                        formControlName="JLG_Availibility">
+                        <option selected value="">select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+
+                      </select>
+                    </div>
+                    <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise=== 'Sonata'">
+                      <label class=" form-control-label" for="APP_Co_APP_Sign">App & Co App Sign Check</label>
+                      <select name="APP_Co_APP_Sign" class="form-select form-control" formControlName="APP_Co_APP_Sign">
+                        <option selected value="">select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+
+                      </select>
+                    </div>
+
+
+                    <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise=== 'Sonata'">
+                      <label class=" form-control-label" for="CreditFile">Northen Arc OSV</label>
+                      <select name="Northern_Arc_Osv" class="form-select form-control"
+                        formControlName="Northern_Arc_Osv">
+                        <option selected value="">select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+
+                      </select>
+                    </div>
+
+                    <!-- <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise==='Finplex' || enableFieldsProductWise==='Sonata'">
+                      <label class=" form-control-label" for="DocumentStatus">Check remark</label>
+                      <select nam="Port" class="form-control form-select" formControlName="CheckList"
+                       >
+                        <option value="">Select Check list</option>
+                        <option *ngFor="let _DT of documentStatusList" [value]="_DT.ID">
+                          {{_DT.Remark}}
+                        </option>
+                      </select>
+                    </div> -->
+
+                    <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise==='Finplex' || enableFieldsProductWise==='Sonata'">
+                      <label class=" form-control-label"> Remark CheckList</label>
+                      <p-multiSelect [options]="documentStatusList" formControlName="CheckList" class="p-multiSelect"
+                        optionLabel="Remark" (onChange)="OnchangeCheckListRemark($event)" [filter]="true" [style]="{ 'width': '280px','height': '45px'}"
+                        placeholder="Select"></p-multiSelect>
+                     
+                    </div>
+  
+
+                    <div class=" col-md-3 mb-3" *ngIf="enableFieldsProductWise">
+                      <label class=" form-control-label" for="Remark">Remark</label>
+                      <textarea class="form-control" formControlName="Remark" rows="2" cols="15"></textarea>
+                    </div>
+
+
+                  </div>
+
+
+                </div>
+
+
+
+
+
+                <!-- <div class="row">
+                  <div class="row" > -->
+
+
+                <!-- </div> -->
+
+                <!-- </div> -->
+
+
+              </div>
+
+
+
+
+
+
+              <div class=" float-right pb-3">
+
+
+                <button class="btn btn-primary" style="background-color: #f3c110;border-color: #f3c110;"
+                  (click)="OnReset()">Reset</button>
+                <button class="btn btn-danger" (click)="onBack()">Back</button>
+                <!-- <button type="button" class="btn btn-warning" [disabled]="AddFileInwardForm.get('CartonNo').invalid"
+                    (click)="onSubmit('packed carton')">Pack Carton</button> -->
+                <button type="button" class="btn btn-warning" [disabled]="isPackCartonClicked"
+                  (click)="onSubmit('courier close')">Close Courier</button>
+                <button class="btn btn-primary" type="submit" (click)="onSubmit('save')">Save</button>
+              </div>
+
+            </form>
+
+            <div class="dataTables_wrapper checklist-table w-100">
+
+              <p-table [paginator]="true" [rows]="10" [value]="formattedData" [autoLayout]="true"
+                [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50,100]" [(first)]="first"
+                (onPage)="paginate($event)" [loading]=""
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+                <ng-template pTemplate="caption">
+                  <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+                  <input type="text" pInputText size="50" placeholder="Search records" (input)="searchTable($event)"
+                    class="global-search">
+                </ng-template>
+                <ng-template pTemplate="header">
+                  <tr>
+
+                    <th *ngFor="let col of headerList; let i = index;" [ngStyle]="i==0 && {'width': '5%'}">
+                      {{col.header}}
+                      <!-- <p-sortIcon *ngIf="i==10" [field]="col.field"></p-sortIcon> -->
+                    </th>
+                  <th style="width: 5%;">
+                                              ACTION
+                                          </th>
+                  </tr>
+
+                </ng-template>
+                <ng-template pTemplate="body" let-car let-rowIndex="rowIndex">
+                  <tr>
+
+                    <td *ngFor="let col of headerList">
+                      {{car[col.field]}}
+                    </td>
+                  <td>
+                    <button type="button" style="padding:0 0 5px 1px"
+                    class="btn btn-icon btn-icon-only"
+                    (click)="onUpdateDocumentStatus(UdpateStatusFormPopup,car)">
+                    <span class="btn-inner--icon"><i class="fa fa-pen"></i></span>
+                </button>
+                  </td>
+
+                  </tr>
+                </ng-template>
+              </p-table>
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #UdpateStatusFormPopup let-c="close" let-d="dismiss" let-modal>
+    <div class="modal-content">
+      <div class="modal-body p-0">
+        <div class=" card">
+          <div class=" card-header">
+            <h3 class=" mb-0">Update File No and Carton No       
+            </h3>
+          </div>
+          <div class="card-body">
+            <form class="needs-validation" novalidate="" [formGroup]="DocumentForm">
+              <div class="row">
+                
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="BatchID">Batch No</label>
+                    <div class="input-group input-group-merge serchInput">
+                      <input readonly type="text" class="form-control" name="BatchID" formControlName="BatchID" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="Loan_Id">LAN No</label>
+                    <div class="input-group input-group-merge serchInput">
+                      <input readonly type="text" class="form-control" name="Loan_Id" formControlName="Loan_Id" />
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="CartonBarCode">Carton Number</label>
+                    <div class="input-group input-group-merge serchInput">
+                      <input   type="text" class="form-control" name="CartonBarCode" formControlName="CartonBarCode" />
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="FIleBarcode">File Barcode</label>
+                    <div class="input-group input-group-merge serchInput">
+                      <input  type="text" class="form-control" name="FIleBarcode" formControlName="FIleBarcode" />
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              <button class="btn btn-primary" type="submit" [disabled]="DocumentForm.invalid" (click)="onUpdateBarcode()">
+                Save
+              </button>
+              <button type="button" class="btn btn-warning" (click)="OnClose()">Close</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template> 

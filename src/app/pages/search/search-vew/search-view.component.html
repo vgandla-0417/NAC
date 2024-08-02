@@ -1,0 +1,116 @@
+<div>
+  <div class=" header bg-danger pb-6">
+      <div class=" container-fluid">
+          <div class=" header-body">
+              <div class=" row align-items-center py-4">
+                  <div class=" col-lg-6 col-7">
+                      <h6 class=" h2 text-white d-inline-block mb-0"></h6>
+                      <nav aria-label="breadcrumb" class=" d-none d-md-inline-block ml-md-4">
+                          <ol class=" breadcrumb breadcrumb-links breadcrumb-dark">
+                              <!-- <li class=" breadcrumb-item">
+                                  <a href="javascript:void(0)"> <i class=" fas fa-home" routerLink=""> </i> </a>
+                              </li> -->
+
+                              <!-- <li class=" breadcrumb-item">
+                  <a href="javascript:void(0)"> Process </a>
+                </li> -->
+
+                              <!-- <li aria-current="page" class=" breadcrumb-item active">
+                                Audit
+                              </li> -->
+
+                            
+
+                          </ol>
+                      </nav>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class=" container-fluid mt--6">
+      <div class=" row">
+          <div class=" col">
+              <div class=" card">
+                  
+                  <div class="card m-3 p-3">
+                      <div class="row">
+                          <div class="text-right px-4">
+                              <button class="btn btn-danger" (click)="onBack()">
+                                Back
+                              </button>
+                          </div>
+
+                          <!--  table two -->
+
+
+                          <div class="col dataTables_wrapper checklist-table w-100">
+                              <div class="text-center p-4">
+                                  <h2>Crown Audit</h2>
+                              </div>
+                              <p-table [paginator]="true" [rows]="10" [value]="CrownTableFormattedData"
+                                  [autoLayout]="true" [showCurrentPageReport]="true"
+                                  [rowsPerPageOptions]="[10,25,50,100]" [(first)]="first" (onPage)="paginate($event)"
+                                  [loading]="false"
+                                  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+
+                                  <ng-template pTemplate="caption">
+                                      <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+                                      <input type="text" pInputText size="50" placeholder="Search records"
+                                          (input)="searchTable1($event)" class="global-search">
+
+                                  </ng-template>
+                                  <ng-template pTemplate="header">
+                                      <tr>
+                                          <th *ngFor="let col of CrownTableHeaderList; let i = index;"
+                                              [ngStyle]="i==0 && {'width': '13%'}">
+                                              {{col.header}}
+                                              <!-- <p-sortIcon *ngIf="i==10" [field]="col.field"></p-sortIcon> -->
+                                          </th>
+                                          <!-- <th style="width: 13%;">
+                                              ACTION
+                                          </th> -->
+                                      </tr>
+                                  </ng-template>
+                                  <ng-template pTemplate="body" let-car let-rowIndex="rowIndex">
+                                      <tr>
+                                          <td *ngFor="let col of CrownTableHeaderList">
+                                              {{car[col.field]}}
+                                          </td>
+                                          <!-- <td>
+
+                                              <button type="button" style="padding:0 0 5px 1px"
+                                                  class="btn btn-icon btn-icon-only"
+                                                  (click)="CrownHealthCheck(CrownFormPopup,car)">
+                                                  <span class="btn-inner--icon"><i class="fa fa-pen"></i></span>
+                                              </button>
+                                              <button type="button" style="padding:0 0 5px 1px"
+                                                  class="btn btn-icon btn-icon-only" (click)="OnDeleteCrown(car)">
+                                                  <span class="btn-inner--icon"><i class="fa fa-trash"></i></span>
+                                              </button>
+                                          </td> -->
+                                      </tr>
+                                  </ng-template>
+                              </p-table>
+                          </div>
+
+                          <!--  table two -->
+
+
+                          
+
+                      </div>
+                  </div>
+
+                 
+
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+

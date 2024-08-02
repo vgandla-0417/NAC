@@ -1,0 +1,215 @@
+<div>
+  <div class=" header bg-danger pb-6">
+    <div class=" container-fluid">
+      <div class=" header-body">
+        <div class=" row align-items-center py-4">
+          <div class=" col-lg-6 col-7">
+            <h6 class=" h2 text-white d-inline-block mb-0">Courier Inward</h6>
+            <nav aria-label="breadcrumb" class=" d-none d-md-inline-block ml-md-4">
+              <ol class=" breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class=" breadcrumb-item">
+                  <a href="javascript:void(0)"> <i class=" fas fa-home" routerLink=""> </i> </a>
+                </li>
+
+                <li class=" breadcrumb-item">
+                  <a href="javascript:void(0)"> Process </a>
+                </li>
+
+                <li aria-current="page" class=" breadcrumb-item active">
+                  Courier Inward
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class=" container-fluid mt--6">
+    <div class=" row">
+      <div class=" col">
+        <div class=" card">
+          <div class="retrieval_add_form">
+
+            <form class="needs-validation p-4" [formGroup]="AddBranchInwardForm">
+              <div class="form-row">
+                <div class="col-md-3 mb-3">
+                  <label class="form-control-label" for="BatchID">Batch ID</label>
+                  <div class="input-group input-group-merge serchInput">
+                    <input readonly style="border-color: green;" type="text" class="form-control" name="batch_id"
+                      formControlName="batch_id" />
+                    <button style="border-color: #006ba1;" (click)="GetBatchDetails()"><i style="color: #006ba1;"
+                        class="fa fa-plus"></i></button>
+                  </div>
+                </div>
+
+
+                <div class=" col-md-3 mb-3">
+                  <label class=" form-control-label" for="awb_No">Consignment No</label>
+                  <input name="consignment_no" placeholder="Consignment No" style="border-color: green;" type="text"
+                    formControlName="consignment_no" type="text" class="form-control" />
+
+                </div>
+
+                <div class=" col-md-3 mb-3">
+                  <div class="form-group">
+                    <label class="form-control-label" for="courier_id">
+                      Courier Name
+                    </label>
+                    <select name="courier_id" class="form-control form-select" formControlName="courier_id">
+                      <option value=1>Courier</option>
+                      <option value=2>DTDC</option>
+                      <option value=3>Blue Dart</option>
+                      <option value=4>FedEx Express</option>
+                      <option value=5>Professional Couriers</option>
+                      <option value=6>Aramex India</option>
+                      <option value=7>Delhivery</option>
+                      <option value=8>Ecom Express</option>
+                      <option value=9>Gati</option>
+                      <option value=10>Safe Express</option>
+                      <option value=11>InExpress</option>
+                      <option value=12>Day express Courier and cargo Services</option>
+                      <option value=13>Super Fast Llogistics</option>
+                      <option value=14>BLAZEFLASH COURIER</option>
+                      <option value=15>APEX INTERNATIONAL</option>
+                      <option value=16>BLUE EXPRESS COURIER</option>
+                      <option value=17>BOMBINO EXPRESS COURIER</option>
+                      <option value=18>DECAN DART EXPRESS</option>
+                      <option value=19>ELBEX COURIERS</option>
+                      <option value=20>FASTWAY EXPRESS</option>
+                      <option value=21>FIRST FLIGHT</option>
+                      <option value=22>FLYKING COURIER</option>
+                      <option value=23>FREIGHT NET PVT LTD</option>
+                      <option value=24>ICS INTERNATIONAL COURIER</option>
+                      <option value=25>INDIAN POSTAL SERVICE</option>
+                      <option value=26>KABLOOM COURIER</option>
+                      <option value=27>METRO MARUTI EXPRESS COURIER</option>
+                      <option value=28>ON TIME COURIER</option>
+                      <option value=29>OVERNITE EXPRESS</option>
+                      <option value=30>RAJDHANI AIR EXPRESS</option>
+                      <option value=31>RED EXPRESS</option>
+                      <option value=32>RELIABLE LOGISTICS</option>
+                      <option value=33>ROYALE INTERNATIONAL</option>
+                      <option value=34>SM LOGISTICS</option>
+                      <option value=35>SAFELINE LOGISTICS</option>
+                      <option value=36>SAFEXPRESS COURIER</option>
+                      <option value=37>SAR WORLDWIDE</option>
+                      <option value=38>SHREE BALAJI COURIER</option>
+                      <option value=39>SHREE MARUTI COURIER</option>
+                      <option value=40>SHREE TIRUPATI COURIER</option>
+                      <option value=41>SKYPACK COURIER</option>
+                      <option value=42>SPEEDWAY CARGO</option>
+                      <option value=43>ST COURIER</option>
+                      <option value=44>TARGET COURIERS</option>
+                      <option value=45>TCI XPS</option>
+                      <option value=46>TNT EXPRESS</option>
+                      <option value=47>UNIQUE EXPRESS</option>
+                      <option value=48>UNITED BUSINESS XPRESS (UBX)</option>
+                      <option value=49>UNITED FREIGHT SERVICE</option>
+                      <option value=50>UNITED PARCEL SERVICE</option>
+                      <option value=51>WORLDWIDE EXPRESS COURIERS</option>
+                      <option value=52>Other</option>
+                      <option value=53>By Hand</option>
+                      <option value=56>Dummy courier</option>
+                      <option value=57>Dummy co</option>
+                      <option value=58>Dummy</option>
+                       
+                    </select>
+        
+        
+                  </div>
+                </div>
+              </div>
+
+              <div class="float-right pb-3 pr-4">
+                <button class="btn btn-primary" (click)="onBack()"
+                  style="background-color: #f34910;border-color: #f36710;">Back</button>
+                <button class="btn btn-primary" style="background-color: #f3c110;border-color: #f3c110;"
+                  (click)="OnReset()">Reset</button>
+                <button class="btn btn-primary" [disabled]="AddBranchInwardForm.invalid" type="submit" (click)="onSubmit()">Save</button>
+              </div>
+
+            </form>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- 
+
+<div class=" col-md-3 mb-3">
+  <div class="form-group">
+    <label class="form-control-label" for="courier_name">
+      Courier Name
+    </label>
+    <select name="courier_name" class="form-control form-select" formControlName="courier_name">
+      <option value="">Select Courier</option>
+      <option value="DTDC">DTDC</option>
+      <option value="Blue Dart">Blue Dart</option>
+      <option value="FedEx Express">FedEx Express</option>
+      <option value="Professional Couriers">Professional Couriers</option>
+      <option value="Aramex India">Aramex India</option>
+      <option value="Delhivery">Delhivery</option>
+      <option value="Ecom Express">Ecom Express</option>
+      <option value="Gati">Gati</option>
+      <option value="Safe Express">Safe Express</option>
+      <option value="InExpress">InExpress</option>
+      <option value="Day express Courier and cargo Services">Day express Courier and cargo Services
+      </option>
+      <option value="Super Fast Llogistics">Super Fast Llogistics</option>
+      <option value="BLAZEFLASH COURIER">BLAZEFLASH COURIER</option>
+      <option value="APEX INTERNATIONAL">APEX INTERNATIONAL</option>
+      <option value="BLUE EXPRESS COURIER">BLUE EXPRESS COURIER</option>
+      <option value="BOMBINO EXPRESS COURIER">BOMBINO EXPRESS COURIER</option>
+      <option value="DECAN DART EXPRESS">DECAN DART EXPRESS</option>
+      <option value="ELBEX COURIERS">ELBEX COURIERS</option>
+      <option value="FASTWAY EXPRESS">FASTWAY EXPRESS</option>
+      <option value="FIRST FLIGHT">FIRST FLIGHT</option>
+      <option value="FLYKING COURIER">FLYKING COURIER</option>
+      <option value="FREIGHT NET PVT LTD">FREIGHT NET PVT LTD</option>
+      <option value="ICS INTERNATIONAL COURIER">ICS INTERNATIONAL COURIER</option>
+      <option value="INDIAN POSTAL SERVICE">INDIAN POSTAL SERVICE</option>
+      <option value="KABLOOM COURIER">KABLOOM COURIER</option>
+      <option value="METRO MARUTI EXPRESS COURIER">METRO MARUTI EXPRESS COURIER</option>
+      <option value="ON TIME COURIER">ON TIME COURIER</option>
+      <option value="OVERNITE EXPRESS">OVERNITE EXPRESS</option>
+      <option value="RAJDHANI AIR EXPRESS">RAJDHANI AIR EXPRESS</option>
+      <option value="RED EXPRESS">RED EXPRESS</option>
+      <option value="RELIABLE LOGISTICS">RELIABLE LOGISTICS</option>
+      <option value="ROYALE INTERNATIONAL">ROYALE INTERNATIONAL</option>
+      <option value="SM LOGISTICS">SM LOGISTICS</option>
+      <option value="SAFELINE LOGISTICS">SAFELINE LOGISTICS</option>
+      <option value="SAFEXPRESS COURIER">SAFEXPRESS COURIER</option>
+      <option value="SAR WORLDWIDE">SAR WORLDWIDE</option>
+      <option value="SHREE BALAJI COURIER">SHREE BALAJI COURIER</option>
+      <option value="SHREE MARUTI COURIER">SHREE MARUTI COURIER</option>
+      <option value="SHREE TIRUPATI COURIER">SHREE TIRUPATI COURIER</option>
+      <option value="SKYPACK COURIER">SKYPACK COURIER</option>
+      <option value="SPEEDWAY CARGO">SPEEDWAY CARGO</option>
+      <option value="ST COURIER">ST COURIER</option>
+      <option value="TARGET COURIERS">TARGET COURIERS</option>
+      <option value="TCI XPS">TCI XPS</option>
+      <option value="TNT EXPRESS">TNT EXPRESS</option>
+      <option value="UNIQUE EXPRESS">UNIQUE EXPRESS</option>
+      <option value="UNITED BUSINESS XPRESS (UBX)">UNITED BUSINESS XPRESS (UBX)</option>
+      <option value="UNITED FREIGHT SERVICE">UNITED FREIGHT SERVICE</option>
+      <option value="UNITED PARCEL SERVICE">UNITED PARCEL SERVICE</option>
+      <option value="WORLDWIDE EXPRESS COURIERS">WORLDWIDE EXPRESS COURIERS</option>
+      <option value="Other">Other</option>
+      <option value="By Hand">By Hand</option>
+
+
+
+    </select>
+  </div>
+</div> -->
